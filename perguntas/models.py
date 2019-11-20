@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Captura(models.Model):
+class Pergunta(models.Model):
 	code = models.CharField(max_length=15)
 	code_user = models.CharField(max_length=15)
 	active = models.IntegerField()
