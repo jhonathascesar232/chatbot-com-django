@@ -22,8 +22,53 @@
 			<li class="nav-item">
 				<a class="nav-link" href="/perguntas/{{code_user}}">Cadastro</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#"
+				onclick="window.open('http://127.0.0.1:8000/perguntas/chatbot/{{code_user}}',
+									 '',
+									 'width=410, heigh=450')">
+									Chatbot
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/perguntas/novo/{{code_user}}">Novo</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/capturas/{{code_user}}">Cadastro</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/perguntas/api/{{code_user}}">API</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/usuarios/login">Sair</a>
+			</li>
 		</ul>
 	</nav>
-
+	<br>
+	<div class="container">
+		<h2>{{titulo}}</h2>
+		<div style="overflow-y: scroll; height: 410px; width: 100%;" align="center">
+			<table class="table">
+				<thread>
+					<tr>
+						<th>Nome</th>
+						<th>Idade</th>
+						<th>Sexo</th>
+						<th>E-mail</th>
+						<th>Celular</th>
+						<th>Telefone</th>
+						<th>CEP</th>
+						<th>Cidade</th>
+						<th>UF</th>
+						<th>Bairro</th>
+						<th>Endereço</th>
+						<th>Número</th>
+						<th>CPF</th>
+						<th>CNPJ</th>
+					</tr>
+				</thread>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
