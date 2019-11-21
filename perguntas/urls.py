@@ -14,5 +14,4 @@ urlpatterns = [
 	path('chatbot/<int:code_user>', chatbot, name = 'chatbot'),
 	path('questao/<int:code_user>/<int:code_before/>/<str:question>', questao, name = 'questao'),	# code_before  para comparar
 	path('api/<int:code_user>', api, name = 'api'),
-
 ]
