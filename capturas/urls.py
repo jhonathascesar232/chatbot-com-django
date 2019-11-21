@@ -2,5 +2,5 @@ from django.urls import path
 from .views import capturas
 
 urlpatterns = [
-	path('<int:code_user>/', capturas),
+	path('<int:code_user>/', capturas),		# codigo do usuario/
 ]
