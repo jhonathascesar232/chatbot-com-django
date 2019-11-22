@@ -67,6 +67,26 @@
 						<th>CNPJ</th>
 					</tr>
 				</thread>
+				<tbody>
+					{{% for captura in capturas %}}
+					<tr>
+						<td nowrap="true">{{captura.name}}</td>
+						<td nowrap="true">{{captura.age}}</td>
+						<td nowrap="true">{{captura.sex}}</td>
+						<td nowrap="true">{{captura.email}}</td>
+						<td nowrap="true">{{captura.cellphone}}</td>
+						<td nowrap="true">{{captura.phone}}</td>
+						<td nowrap="true">{{captura.cep}}</td>
+						<td nowrap="true">{{captura.city}}</td>
+						<td nowrap="true">{{captura.state}}</td>
+						<td nowrap="true">{{captura.neighborhood}}</td>
+						<td nowrap="true">{{captura.address}}</td>
+						<td nowrap="true">{{captura.number}}</td>
+						<td nowrap="true">{{captura.cpf}}</td>
+						<td nowrap="true">{{captura.cnpj}}</td>
+					</tr>
+					{{% endfor %}}					
+				</tbody>
 			</table>
 		</div>
 	</div>
