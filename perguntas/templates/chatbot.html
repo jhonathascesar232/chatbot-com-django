@@ -71,7 +71,49 @@
             const http = new XMLHttpRequest(); // fazer a requisição http
             //      Tipo conexão
             http.open("GET",`/perguntas/questao/${codeUser}/${codeBefore}/${questionSEND}`, true);
+//            o envio assincrono nao espera o termino da requisão, faz um comando sem precisar esperar que o outro termine
+            // envia um cabeçalho com tipo de contúdo protegido
+            http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            // lendo o estado de alteração do Objeto construido -> http
+            // na conclusão do envio da requisão a funçã é executada
+            http.onreadystatechange = function(){
+                // compara a conclusão XMLHttpRequest.DONE com o stado do Objeto
+                if(this.readyState == XMLHttpRequest.DONE && this.status === 200){ // 200 = bem sucedido
+                    let objJSON = JSON.parse(http.responseText);
+                    
+                    if(objJSON.length > 0){
+                        code_before.value = objJSON[0].code_current; // code_current é o mesmo que o code da tabela pergunta
+                        
+                        const input = question;
+                        const output = objJSON[0].output.toString().trim();
+                        
+                        msgLines +=
+                        `
+                        <div class="talk-bubble try-right right-top" style="widows: 90%; background-color: #8000ff;">
+                            <div class="talk-text">
+                               <p>${input}</p>
+                            </div>
+                        </div>
+
+                        <div class="talk-bubble try-right left-top" style="widows: 90%; background-color: #00aabb;">
+                            <div class="talk-text">
+                                <p>${output}</p>
+                            </div>
+                        </div>
+                        <a href="#" id="end">
+                        `;
+                        
+                        document.getElementById("input").value = "";
+                        msg.innerHTML = msgLines;
+                        window.location.href = "#end"; // faz o scroll rolar para baixo
+                        document.getElementById("input").focus(); // foco automatico no campo;
+                    }
+                }
+            }
+            http.send();
         }
+        window.location.href = "#end"; // faz o scroll rolar para baixo
+        document.getElementById("input").focus();
     </script>
 	
 </body>
