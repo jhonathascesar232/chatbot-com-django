@@ -42,5 +42,59 @@
 	</div>
 	<input type="hidden" id="code_user" value="{{code_user}}">
 	<input type="hidden" id="code_before" value="0">
+	
+	<script>
+        function Send(evento){
+            if(evento.keyCode == 13){
+                perguntar();
+                return false;// nao recarregar a pagina;
+            }
+        }
+        
+        function pergunta(){
+            const Input = document.getElementById("input");
+            const question = Input.value.toString().trim(); // recebe o valor do campo input do usuário . e convert para string . remove espaços do inicio e do fim;
+            // remove acentos
+            let questionSEND = question.normalize("FND").replace(/[\u0300-\u036f]/g, "");
+            // remove caracteres não alfanumericos;
+            questionSEND = questionSEND.replace(/[^a-zA-Z0-9@,.:;!?-\s]/g, "");
+            
+            const msg = document.getElementById("msg");
+            const code_user = document.getElementById("code_user");
+            const code_before = document.getElementById("code_before");
+            
+            let msgLines = msg.innerHTML;
+            msgLines = msgLines.replace('<a href="#" id="end">', ''); // troca a tag a por vazio
+            const codeUser = Number(code_user.value);
+            const codeBefore = Number(code_before.value);
+            
+            const http = new XMLHttpRequest(); // fazer a requisição http
+            //      Tipo conexão
+            http.open("GET",`/perguntas/questao/${codeUser}/${codeBefore}/${questionSEND}`, true);
+        }
+    </script>
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
