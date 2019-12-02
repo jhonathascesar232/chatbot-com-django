@@ -52,7 +52,7 @@
 			<input type="hidden" name="code_user" value="{{perguntas.code_user}}">
 
 			<div class="form-group">
-				<select class="form-control" name="code_relation" disabled="true">
+				<select class="form-control" name="code_relation" id="code_relation" disabled="true">
 					<option value="0">Relaçao com a Resposta Anterior</option>
 					{% for selecao in todas %}
 						<option value="{{selecao.code}}">{{selecao.question}}</option>
@@ -69,11 +69,27 @@
 				<!-- resposta -->
 				<label for="answer">Resposta:</label>
 				<!-- no back-end são identificados por 'name' -->
-				<textarea class="form-group" rows="5" id="answer" name="answer">
-					
+				<!-- spellcheck - serve para coorreção de texto, no caso esta desativado  -->
+				<textarea class="form-group" rows="5" id="answer"
+				spellcheck="false" name="answer" disabled="true"> <!--serve somente leitura(disable='true')-->
+					{{perguntas.answer}}
 				</textarea>
 			</div>
+			<!-- retorna para a listagem de perguntas -->
+			<a href="/perguntas/{{perguntas.code_user}}" class="btn btn-secondary" role="button">
+				Cancelar
+			</a>
+			<button type="submit" class="btn btn-danger">Deletar</button>
 		</form>
 	</div>
+
+	<script type="text/javascript">
+		const code_relation = document.querySelect("#code_relation");
+		code_relation.valeu = "{{perguntas.code_relation}}";
+
+		const answer = document.getElementById("answer");
+		answer.innerHTML = answer.value.trim()
+	</script>
+
 </body>
 </html>
