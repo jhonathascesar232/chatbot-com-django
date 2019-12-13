@@ -36,8 +36,47 @@ def pergunta(request, id):
 
 def novo(request, code_user):
 	data = {}
+
 	data['titulo'] = 'Inserção de Perguntas e Respostas'
 	data['todas'] = Pergunta.objects.filter(code_user = code_user)
 	data['code_user'] = code_user
 
 	return render(request, 'novoPerguntas.html', data)
+
+def getCODE():
+	from datetime import datetime
+
+	dataHora = datetime.now()
+	code = str(dataHora.year)
+	code += str(dataHora.month)
+	code += str(dataHora.day)
+	code += str(dataHora.hour)
+	code += str(dataHora.minute)
+	code += str(dataHora.second)
+# converte pra int, faz o arredondamento com zero casas decimais, converte pra int, converte pra str
+	code = str(int(round(int(code) /2, 0)))
+
+	return code
+
+@csrf_protect
+def salvarNovo(request):
+	code = getCODE()
+	code_user = request.POST.get('code_user')
+	active = 1
+	code_relation = request.POST.get('code_relation')
+	question = request.POST.get('question')
+	answer = request.POST.get('answer')
+
+	p = Pergunta(
+		code = code,
+		code_user = code_user,
+		active = active,
+		code_relation = code_relation,
+		question = question,
+		answer = answer,
+	)
+
+	data = {}
+	data['code_user'] = code_user
+
+	return render(request ,'redirecionar.html', data)
